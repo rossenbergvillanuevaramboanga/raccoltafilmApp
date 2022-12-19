@@ -1,0 +1,57 @@
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+
+        <div class="alert alert-success alert-dismissible fade show " role="alert" *ngIf="confirmMessage">
+            {{confirmMessage}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class='card'>
+            <div class='card-header'>
+                <h5>Lista dei risultati</h5>
+            </div>
+            <div class='card-body'>
+                <a class="btn btn-primary " routerLink="/film/create">Add New</a>
+
+                <div class='table-responsive'>
+                    <table class='table table-hover'>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Titolo</th>
+                                <th>Genere</th>
+                                <th>Data Pubblicazione</th>
+                                <th>Durata (min.)</th>
+                                <th [isAdmin]="authService.isAdmin()">Azioni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let filmItem of filmList" [routerLink]="['/film/detail/',filmItem.id]">
+                                <td>{{filmItem.id}}</td>
+                                <td>{{filmItem.titolo}}</td>
+                                <td>{{filmItem.genere}}</td>
+                                <td>{{filmItem.dataPubblicazione | date:'dd/MM/yyyy'}}</td>
+                                <td>{{filmItem.minutiDurata}}</td>
+                                <td [isAdmin]="authService.isAdmin()">
+                                    <a class="btn btn-primary btn-lg"
+                                        [routerLink]="['/film/detail/',filmItem.id]">Dettaglio</a>
+                                    <a class="btn btn-danger btn-lg"
+                                        [routerLink]="['/film/delete/',filmItem.id]">Elimina</a>
+                                    <a class="btn btn-warning btn-lg"
+                                        [routerLink]="['/film/update/',filmItem.id]">Modifica</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
+
+        <!-- end container -->
+    </div>
+
+</main>

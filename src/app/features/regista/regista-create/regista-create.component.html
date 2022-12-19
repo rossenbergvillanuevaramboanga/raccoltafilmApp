@@ -1,0 +1,113 @@
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+    <div class="container">
+
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="errorMessage">
+            {{errorMessage}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class='card'>
+            <div class='card-header'>
+                <h5>Inserisci nuovo elemento</h5>
+            </div>
+            <div class='card-body'>
+
+                <form (ngSubmit)="save(registaForm)" #registaForm="ngForm" class="row g-3">
+
+
+                    <div class="col-md-6">
+                        <label>Nome<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" placeholder="Inserire il nome" required minlength="4"
+                            id="nome" name="nome" [(ngModel)]="regista.nome" #nomeVar="ngModel"
+                            [ngClass]="{'is-invalid': (nomeVar.touched || nomeVar.dirty) && !nomeVar.valid }">
+                        <span class="invalid-feedback">
+                            <span *ngIf="nomeVar.errors?.['required']">
+                                Prego inserire un valore
+                            </span>
+                            <span *ngIf="nomeVar.errors?.['minlength']">
+                                Il campo deve avere almeno due caratteri.
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Cognome<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" placeholder="Inserire il cognome" required minlength="4"
+                            id="cognome" name="cognome" [(ngModel)]="regista.cognome" #cognomeVar="ngModel"
+                            [ngClass]="{'is-invalid': (cognomeVar.touched || cognomeVar.dirty) && !cognomeVar.valid }">
+                        <span class="invalid-feedback">
+                            <span *ngIf="cognomeVar.errors?.['required']">
+                                Prego inserire un valore
+                            </span>
+                            <span *ngIf="cognomeVar.errors?.['minlength']">
+                                Il campo deve avere almeno due caratteri.
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label>Nickname<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" placeholder="Inserire il nickName" required
+                            minlength="4" id="nickName" name="nickName" [(ngModel)]="regista.nickName"
+                            #nickNameVar="ngModel"
+                            [ngClass]="{'is-invalid': (nickNameVar.touched || nickNameVar.dirty) && !nickNameVar.valid }">
+                        <span class="invalid-feedback">
+                            <span *ngIf="nickNameVar.errors?.['required']">
+                                Prego inserire un valore
+                            </span>
+                            <span *ngIf="nickNameVar.errors?.['minlength']">
+                                Il campo deve avere almeno due caratteri.
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class=" col-md-3">
+                        <label>Data di Nascita<span class="text-danger">*</span></label>
+                        <input type="date" class="form-control" placeholder="dd/MM/yy" required id="dataDiNascita"
+                            name="dataDiNascita" title="formato : gg/mm/aaaa" [(ngModel)]="regista.dataDiNascita"
+                            #dataDiNascitaVar="ngModel"
+                            [ngClass]="{'is-invalid': (dataDiNascitaVar.touched || dataDiNascitaVar.dirty) && !dataDiNascitaVar.valid }">
+                        <span class="invalid-feedback">
+                            <span *ngIf="!dataDiNascitaVar.valid">
+                                Il campo deve essere correttamente valorizzato
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label>Sesso <span class="text-danger">*</span></label>
+                        <select id="sesso" class="form-select" required name="sesso" [(ngModel)]="regista.sesso"
+                            #sessoVar="ngModel"
+                            [ngClass]="{'is-invalid': (sessoVar.touched || sessoVar.dirty) && !sessoVar.valid }">
+                            <option value="" selected> - Selezionare - </option>
+                            <option value="MASCHIO">MASCHIO</option>
+                            <option value="FEMMINA">FEMMINA</option>
+                        </select>
+                        <span class="invalid-feedback">
+                            <span *ngIf="sessoVar.errors?.['required']">
+                                Prego selezionare un valore
+                            </span>
+                        </span>
+                    </div>
+
+
+                    <div class="col-12">
+                        <button type="submit" name="submit" value="submit" id="submit"
+                            class="btn btn-primary">Conferma</button>
+                    </div>
+
+
+                </form>
+
+
+                <!-- end card-body -->
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end container -->
+    </div>
+
+    <!-- end main -->
+</main>
